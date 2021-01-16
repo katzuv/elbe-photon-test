@@ -24,6 +24,10 @@ jobs:
       # Checkout code.
       - uses: actions/checkout@v1
 
+      - name: Find yourself
+        run: | 
+          MY_USERID=whoami 
+
       #- name: Elbe Install Prep 
       #  run: | 
       #    sudo touch /etc/apt/sources.list.d/elbe.list 
@@ -54,7 +58,6 @@ jobs:
         
       - name: InitVM Setup or something
         run: | 
-          MY_USERID=whoami 
           sudo adduser $MY_USERID libvirt 
           sudo adduser $MY_USERID libvirt-qemu 
           mkdir build 

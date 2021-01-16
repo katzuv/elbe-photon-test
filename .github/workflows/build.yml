@@ -59,5 +59,7 @@ jobs:
           sudo adduser $MY_USERID libvirt 
           sudo adduser $MY_USERID libvirt-qemu 
           mkdir build 
-          cd build 
+          cd build
+          sudo rm -rf /var/lib/apt/lists
+          sudo apt-get update
           sudo elbe initvm create 

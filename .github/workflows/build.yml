@@ -1,0 +1,41 @@
+name: Build
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  # Set the job key. The key is displayed as the job name
+  # when a job name is not provided
+  build: 
+    # Name the Job
+    name: Build the Pi Image
+    # Set the type of machine to run on
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Elbe Install Prep 
+      - run: |
+        sudo echo "deb http://debian.linutronix.de/elbe buster main" > /etc/apt/sources.list.d/elbe.list
+        sudo echo "deb http://debian.linutronix.de/elbe-common buster main" > /etc/apt/sources.list.d/elbe.list
+        sudo wget -q -O - http://debian.linutronix.de/elbe-common/elbe-repo.pub | apt-key add -
+        
+      - name: Elbe Install
+      - run: |
+        sudo apt-get update
+        sudo apt-get install elbe
+        
+      - name: InitVM Setup or something
+      - run: |
+        MY_USERID = whoami
+        sudo adduser $MY_USERID libvirt
+        sudo adduser $MY_USERID libvirt-qemu
+        mkdir build
+        cd build
+        elbe initvm create

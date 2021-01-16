@@ -26,6 +26,8 @@ jobs:
 
       - name: Elbe Install Prep 
         run: | 
+          sudo touch /etc/apt/sources.list.d/elbe.list 
+          sudo chmod 777 /etc/apt/sources.list.d/elbe.list 
           sudo echo "deb http://debian.linutronix.de/elbe buster main" > /etc/apt/sources.list.d/elbe.list
           sudo echo "deb http://debian.linutronix.de/elbe-common buster main" > /etc/apt/sources.list.d/elbe.list 
           sudo wget -q -O - http://debian.linutronix.de/elbe-common/elbe-repo.pub | apt-key add - 

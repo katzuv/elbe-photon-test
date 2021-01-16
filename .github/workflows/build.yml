@@ -60,6 +60,9 @@ jobs:
           sudo adduser $MY_USERID libvirt-qemu 
           mkdir build 
           cd build
-          sudo rm -rf /var/lib/apt/lists
+          sudo rm -r /var/lib/apt/lists
+          sudo mkdir -p /var/lib/apt/lists/partial
+          sudo apt-get clean
           sudo apt-get update
+          sudo apt-key list | grep expired
           sudo elbe initvm create 

@@ -51,7 +51,7 @@ jobs:
           sudo wget -q -O - http://debian.linutronix.de/elbe-common/elbe-repo.pub | sudo apt-key add - 
           sudo apt-get update 
           sudo apt-get install elbe 
-          sudo apt-get libvirt-daemon-system
+          sudo apt-get install libvirt-daemon-system
         
       - name: InitVM Setup or something
         run: | 

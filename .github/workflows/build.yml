@@ -24,14 +24,26 @@ jobs:
       # Checkout code.
       - uses: actions/checkout@v1
 
-      - name: Elbe Install Prep 
-        run: | 
-          sudo touch /etc/apt/sources.list.d/elbe.list 
-          sudo chmod 777 /etc/apt/sources.list.d/elbe.list 
-          sudo echo "deb http://debian.linutronix.de/elbe buster main" > /etc/apt/sources.list.d/elbe.list
-          sudo echo "deb http://debian.linutronix.de/elbe-common buster main" > /etc/apt/sources.list.d/elbe.list 
-          sudo wget -q -O - http://debian.linutronix.de/elbe-common/elbe-repo.pub | apt-key add - 
+      #- name: Elbe Install Prep 
+      #  run: | 
+      #    sudo touch /etc/apt/sources.list.d/elbe.list 
+      #    sudo chmod 777 /etc/apt/sources.list.d/elbe.list 
+      #    sudo echo "deb http://debian.linutronix.de/elbe buster main" > /etc/apt/sources.list.d/elbe.list
+      #    sudo echo "deb http://debian.linutronix.de/elbe-common buster main" > /etc/apt/sources.list.d/elbe.list 
+      #    sudo wget -q -O - http://debian.linutronix.de/elbe-common/elbe-repo.pub | apt-key add - 
         
+      - name: add custom deb repository elbe
+        uses: myci-actions/add-deb-repo@4
+        with:
+          repo: deb http://debian.linutronix.de/elbe buster main
+          repo-name: elbe
+      - name: add custom deb repository elbe common
+        uses: myci-actions/add-deb-repo@4
+        with:
+          repo: http://debian.linutronix.de/elbe-common buster main
+          repo-name: elbe common
+
+
       - name: Elbe Install
         run: | 
           sudo apt-get update 

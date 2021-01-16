@@ -21,18 +21,18 @@ jobs:
 
     steps:
       - name: Elbe Install Prep 
-      - run: | 
+        run: | 
           sudo echo "deb http://debian.linutronix.de/elbe buster main" > /etc/apt/sources.list.d/elbe.list
           sudo echo "deb http://debian.linutronix.de/elbe-common buster main" > /etc/apt/sources.list.d/elbe.list 
           sudo wget -q -O - http://debian.linutronix.de/elbe-common/elbe-repo.pub | apt-key add - 
         
       - name: Elbe Install
-      - run: | 
+        run: | 
           sudo apt-get update 
           sudo apt-get install elbe 
         
       - name: InitVM Setup or something
-      - run: | 
+        run: | 
           MY_USERID = whoami 
           sudo adduser $MY_USERID libvirt 
           sudo adduser $MY_USERID libvirt-qemu 

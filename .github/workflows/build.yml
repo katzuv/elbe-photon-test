@@ -20,6 +20,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      # Checkout code.
+      - uses: actions/checkout@v1
+
       - name: Elbe Install Prep 
         run: | 
           sudo echo "deb http://debian.linutronix.de/elbe buster main" > /etc/apt/sources.list.d/elbe.list

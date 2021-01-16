@@ -37,15 +37,18 @@ jobs:
         with:
           repo: deb http://debian.linutronix.de/elbe buster main
           repo-name: elbe
+          update: false
       - name: add custom deb repository elbe common
         uses: myci-actions/add-deb-repo@4
         with:
           repo: http://debian.linutronix.de/elbe-common buster main
           repo-name: elbe common
+          update: false
 
 
       - name: Elbe Install
         run: | 
+          sudo wget -q -O - http://debian.linutronix.de/elbe-common/elbe-repo.pub | sudo apt-key add - 
           sudo apt-get update 
           sudo apt-get install elbe 
         

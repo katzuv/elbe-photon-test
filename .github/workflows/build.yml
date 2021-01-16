@@ -58,6 +58,7 @@ jobs:
         
       - name: InitVM Setup or something
         run: | 
+          MY_USERID=whoami 
           sudo adduser $MY_USERID libvirt 
           sudo adduser $MY_USERID libvirt-qemu 
           mkdir build 

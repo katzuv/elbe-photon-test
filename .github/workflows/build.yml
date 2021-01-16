@@ -4,13 +4,11 @@ name: Build
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     tags:
       - 'v*'
   pull_request:
-    branches: [ master ]
-
-asdfasdf why you no work
+    branches: [ main ]
 
 jobs:
   # Set the job key. The key is displayed as the job name
